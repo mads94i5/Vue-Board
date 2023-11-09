@@ -1,0 +1,41 @@
+<template>
+    <div>
+        <button @click="addItemAction" :style="{ width: buttonWidth }" >ADD {{ titleName }}</button>
+    </div>
+</template>
+
+<script lang="ts">
+import { defineComponent } from 'vue';
+
+export default defineComponent({
+    name: 'AddButton',
+    props: {
+        titleName: String,
+        addItem: Function,
+        buttonWidth: String,
+        cssPosition: String,
+    },
+    setup(props, { emit }) {
+        const addItemAction = () => {
+            emit('add-item');
+        };
+        return {
+            addItemAction,
+        };
+    },
+});
+</script>
+
+<style scoped>
+button {
+    color: hsla(var(--primaryButtonTextColor), 1);
+    background-color: hsla(var(--primaryButtonBackgroundColor), 1);
+    border-color: hsla(var(--primaryButtonBackgroundColor), 0);
+    border-radius: 1rem;
+    padding: 0.5rem;
+}
+
+button:hover {
+    opacity: 0.8;
+}
+</style>

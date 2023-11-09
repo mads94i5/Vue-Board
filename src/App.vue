@@ -1,30 +1,34 @@
 <template>
-  <nav>
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
-  </nav>
-  <router-view/>
+  <HeaderItem />
 </template>
+
+<script lang="ts">
+import HeaderItem from './components/Header/HeaderItem.vue'
+
+export default {
+  name: 'App',
+  components: {
+    HeaderItem,
+  }
+}
+</script>
 
 <style>
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
+  font-family: 'Work Sans', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
+  color: hsla(var(--safeDarkAccent-hsl), 1);
 }
 
-nav {
-  padding: 30px;
+body {
+  background-color: hsla(var(--safeLightAccent-hsl), 1);
 }
 
-nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
-
-nav a.router-link-exact-active {
-  color: #42b983;
+html, body {
+  margin: 0;
+  padding: 0;
+  overflow: hidden; 
 }
 </style>

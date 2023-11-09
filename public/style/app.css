@@ -1,0 +1,14 @@
+:root {
+    --white-hsl: 30,100%,97.65%;
+    --black-hsl: 0,55.559999999999995%,14.12%;
+    --safeLightAccent-hsl: 3.87,70.45%,82.75%;
+    --safeDarkAccent-hsl: 0,0%,0%;
+    --safeInverseAccent-hsl: 0,0%,0%;
+    --safeInverseLightAccent-hsl: 0,0%,0%;
+    --safeInverseDarkAccent-hsl: 0,0%,100%;
+    --accent-hsl: 3.87,70.45%,82.75%;
+    --lightAccent-hsl: 42.46,100%,87.25%;
+    --darkAccent-hsl: 0,9.68%,48.63%;
+    --primaryButtonTextColor: 30, 100%, 97.65%;
+    --primaryButtonBackgroundColor: 0, 55.55999999999999995%, 14.12%;
+}
