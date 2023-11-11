@@ -1,54 +1,55 @@
 <template>
     <div class="board-item">
         <div class="horizontal-scrollable-content">
-            <div style="position: relative;">
-                <table>
-                    <tr>
-                        <StatusBlock v-for="(column, index) in columns" :key="index" class="column-element" :title="column.title" style="position: relative; top: -2.5rem; left: -1rem" />
-                        <AddButton class="column-element" titleName="COLUMN" buttonWidth="200px" @add-item="addStatusBlock" />
-                    </tr>
-                </table>
-            </div>
-            <div>
-            </div>
+            <table>
+                <tr>
+                    <ColumnItem v-for="(column, index) in columns" 
+                    class="column-element"
+                    :key="index" 
+                    :id="index"
+                    :title="column.title" 
+                    @update:column="updateColumnCards"
+                    style="position: relative; top: -2.5rem; left: -1rem" />
+                    <ButtonItem class="column-element" text="ADD COLUMN" buttonWidth="200px" @click-action="addColumn" />
+                </tr>
+            </table>
         </div>
     </div>
 </template>
-
+  
 <script lang="ts">
 import { defineComponent } from 'vue';
-import AddButton from './AddButton.vue'
-import StatusBlock from './StatusBlock.vue'
+import ButtonItem from './ButtonItem.vue';
+import ColumnItem from './ColumnItem.vue';
 
 export default defineComponent({
     name: 'BoardItem',
     components: {
-        AddButton,
-        StatusBlock,
+        ButtonItem,
+        ColumnItem,
     },
-    data() {
-        return {
-            columns: [
-                { title: 'Completed' },
-                { title: 'In progress' },
-                { title: 'To-do' },
-            ],
-        };
+    computed: {
+        columns() {
+            return this.$store.state.columns;
+        },
     },
     methods: {
-        addStatusBlock() {
-            this.columns.push({ title: 'New Column' });
+        updateColumnCards(index, cards) {
+            this.$store.commit('updateColumnCards', { columnIndex: index, cards });
+        },
+        addColumn() {
+            this.$store.commit('addColumn');
         },
     },
 });
-
 </script>
-
+  
 <style scoped>
 .board-item {
     margin: 1rem;
     padding: 1rem;
 }
+
 .horizontal-scrollable-content {
     overflow-x: scroll;
     white-space: nowrap;
@@ -56,6 +57,7 @@ export default defineComponent({
     height: 70vh;
     background-color: hsla(var(--lightAccent-hsl), 1);
 }
+
 .column-element {
     margin: 1rem;
     display: inline-block;

@@ -1,6 +1,6 @@
 <template>
     <div>
-        <button @click="addItemAction" :style="{ width: buttonWidth }" >ADD {{ titleName }}</button>
+        <button @click="clickAction" :style="{ width: buttonWidth }" >{{ text }}</button>
     </div>
 </template>
 
@@ -8,19 +8,18 @@
 import { defineComponent } from 'vue';
 
 export default defineComponent({
-    name: 'AddButton',
+    name: 'ButtonItem',
     props: {
-        titleName: String,
+        text: String,
         addItem: Function,
         buttonWidth: String,
-        cssPosition: String,
     },
     setup(props, { emit }) {
-        const addItemAction = () => {
-            emit('add-item');
+        const clickAction = () => {
+            emit('click-action');
         };
         return {
-            addItemAction,
+            clickAction,
         };
     },
 });
